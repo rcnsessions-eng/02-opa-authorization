@@ -1,0 +1,175 @@
+{
+  "$defs": {
+    "PrincipalContext": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "human",
+          "default": "human",
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "tenant_id"
+      ],
+      "title": "PrincipalContext",
+      "type": "object"
+    },
+    "RequestContext": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]*$",
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "RequestContext",
+      "type": "object"
+    },
+    "ResourceContext": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+          "title": "Id",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "learner-progress",
+            "approved-content-collection"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "owner_id": {
+          "anyOf": [
+            {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Owner Id"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "tenant_id"
+      ],
+      "title": "ResourceContext",
+      "type": "object"
+    },
+    "TenantContext": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]*$",
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "TenantContext",
+      "type": "object"
+    },
+    "WorkloadContext": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "const": "learning-api",
+          "default": "learning-api",
+          "title": "Id",
+          "type": "string"
+        }
+      },
+      "title": "WorkloadContext",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "principal": {
+      "$ref": "#/$defs/PrincipalContext"
+    },
+    "workload": {
+      "$ref": "#/$defs/WorkloadContext"
+    },
+    "action": {
+      "enum": [
+        "content.search",
+        "progress.read",
+        "assessment.create",
+        "evidence.record"
+      ],
+      "title": "Action",
+      "type": "string"
+    },
+    "resource": {
+      "$ref": "#/$defs/ResourceContext"
+    },
+    "tenant": {
+      "$ref": "#/$defs/TenantContext"
+    },
+    "request": {
+      "$ref": "#/$defs/RequestContext"
+    }
+  },
+  "required": [
+    "principal",
+    "workload",
+    "action",
+    "resource",
+    "tenant",
+    "request"
+  ],
+  "title": "AuthorizationInput",
+  "type": "object"
+}
