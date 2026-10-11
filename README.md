@@ -4,6 +4,10 @@ Workshop 02 in the **Zero Trust for AI Agents** companion sequence. The implemen
 
 This is educational, non-production source. Public repository access does not grant unrestricted use, redistribution or production assurance.
 
+## Executable Book Examples
+
+[Teaching tools 1.0.0](book-tools/README.md) provide the book's Chapter 4 and Appendix E/F executable examples as a standalone, checksum-listed package. They require Python, Pandoc and Docker, but no sibling workshop or running application. Read the package guide before executing its policy tests or optional microbenchmark. The teaching contract is separate from this workshop's application contract.
+
 ## License and Permissions
 
 First-party source code is provided under the [NON-COMMERCIAL SOURCE-AVAILABLE LICENSE](LICENSE), not an open-source license. It permits personal learning, non-commercial experimentation and non-commercial academic research, subject to its terms.
